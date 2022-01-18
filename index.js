@@ -11,13 +11,13 @@ console.log('task 1', finals2014);
 //(a) Home Team name for 2014 world cup final
 console.log('task 1a', finals2014[0]['Home Team Name']);
 //(b) Away Team name for 2014 world cup final
-
+console.log('task 1b', finals2014[0]['Away Team Name']);
 //(c) Home Team goals for 2014 world cup final
-
+console.log('task 1c', finals2014[0]['Home Team Goals']);
 //(d) Away Team goals for 2014 world cup final
-
+console.log('task 1d', finals2014[0]['Away Team Goals']);
 //(e) Winner of 2014 world cup final */
-
+console.log('task 1e', finals2014[0]['Away Team Name']);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -27,11 +27,14 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(arr) {
+   const newArray = arr.filter(function(item) {
+       return item.Stage === 'Final';
+   })
+   return newArray;
 }
 
-
+console.log('task 2', getFinals(fifaData));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -39,11 +42,11 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(arr, callback) {
+return arr.map(item => item.Year);
 }
 
-
+console.log('task 3', getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
