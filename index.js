@@ -34,7 +34,7 @@ function getFinals(arr) {
    return newArray;
 }
 
-console.log('task 2', getFinals(fifaData));
+//console.log('task 2', getFinals(fifaData));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -42,8 +42,10 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(arr, callback) {
-return arr.map(item => item.Year);
+function getYears(arr, cb) {
+    const years = cb(arr).map(item => item.Year);
+    return years;
+    
 }
 
 console.log('task 3', getYears(fifaData, getFinals));
@@ -57,7 +59,7 @@ Use the higher-order function getWinners to do the following:
 
 function getWinners(arr, callback) {
     const winners = callback(arr).map(function(item) {  
-        if(item['Home Team Goals'] > item['Away Team Goals']) {
+        if(item.Stage === 'Final' && item['Home Team Goals'] > item['Away Team Goals']) {
             return item['Home Team Name']
             
         } else {
@@ -67,7 +69,7 @@ function getWinners(arr, callback) {
     return winners;
 }
 
-console.log('task 4', getWinners(fifaData, getFinals));
+//console.log('task 4', getWinners(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -80,11 +82,19 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(arr, cbOne, cbTwo, cbThree) {
+    const sent = [];
+    cbOne(arr).forEach((item, index) => {
+        return sent.push(`In ${cbTwo(arr, cbOne)[index]}, ${cbThree(arr, cbOne)[index]} won the world cup!`)
+    })
+    return sent;
+    // const sent = [];
+    // cbOne(arr).forEach(item => sent.push(`In ${cbTwo(arr)}, ${item['Home Team Name']} won the world cup!`))
+    // return sent;
+
 }
-
-
+//`In ${cbTwo(arr)}, ${item} won the world cup!`
+//console.log('task 5', getWinnersByYear(fifaData, getFinals, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
