@@ -34,7 +34,7 @@ function getFinals(arr) {
    return newArray;
 }
 
-//console.log('task 2', getFinals(fifaData));
+console.log('task 2', getFinals(fifaData));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -69,7 +69,7 @@ function getWinners(arr, callback) {
     return winners;
 }
 
-//console.log('task 4', getWinners(fifaData, getFinals));
+console.log('task 4', getWinners(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -88,13 +88,9 @@ function getWinnersByYear(arr, cbOne, cbTwo, cbThree) {
         return sent.push(`In ${cbTwo(arr, cbOne)[index]}, ${cbThree(arr, cbOne)[index]} won the world cup!`)
     })
     return sent;
-    // const sent = [];
-    // cbOne(arr).forEach(item => sent.push(`In ${cbTwo(arr)}, ${item['Home Team Name']} won the world cup!`))
-    // return sent;
-
 }
-//`In ${cbTwo(arr)}, ${item} won the world cup!`
-//console.log('task 5', getWinnersByYear(fifaData, getFinals, getYears, getWinners));
+
+console.log('task 5', getWinnersByYear(fifaData, getFinals, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -106,10 +102,17 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(cb) {
+    const goals = cb.map(item => (item['Home Team Goals'] + item['Away Team Goals']));
+    console.log('goals', goals);
+    const totalGoals = goals.reduce((acc, item) => acc + item, 0);
+    const averageGoals = totalGoals / goals.length;
+    console.log('length', goals.length);
+    console.log('total', totalGoals);
+    return averageGoals.toFixed(2);
 }
 
+console.log('task 6', getAverageGoals(getFinals(fifaData)));
 
 
 
